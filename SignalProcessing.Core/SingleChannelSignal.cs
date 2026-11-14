@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace SignalProcessing.Core
 {
-    internal class SignalProcessingCore
+     public class SingleChannelSignal
     {
-        public SignalProcessingCore(float freq, float[] value)
+        public SingleChannelSignal(float freq, float[] value)
         {
             Freq = freq;
             Value = value;

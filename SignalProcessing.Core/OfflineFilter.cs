@@ -2,7 +2,7 @@
 
 namespace SignalProcessing.Core
 {
-    internal static class OfflineFilter
+    public class OfflineFilter
     {
         public static float[] Filter(float[] data, int windowSize)
         {

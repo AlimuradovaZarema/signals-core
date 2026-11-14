@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace SignalProcessing.Core
 {
-    internal class Tools
+    public class Tools
     {
-        public static SignalProcessingCore Line(float len, float freq, float k, float b)
+        public static SingleChannelSignal Line(float len, float freq, float k, float b)
         {
             int count = (int)(len * freq + 0.5);
             float[] y = new float[count];
@@ -14,10 +14,10 @@ namespace SignalProcessing.Core
                 float t = i / freq;
                 y[i] = k * t + b;
             }
-            return new SignalProcessingCore(freq, y);
+            return new SingleChannelSignal(freq, y);
         }
 
-        public static SignalProcessingCore Sin(float len, float freq, float period, float phase, float scale)
+        public static SingleChannelSignal Sin(float len, float freq, float period, float phase, float scale)
         {
             int count = (int)(len * freq + 0.5);
             float[] y = new float[count];
@@ -27,10 +27,10 @@ namespace SignalProcessing.Core
                 float t = i * diff;
                 y[i] = scale * (float)Math.Sin((t - phase) * 2 * Math.PI / period);
             }
-            return new SignalProcessingCore(freq, y);
+            return new SingleChannelSignal(freq, y);
         }
 
-        public static SignalProcessingCore Noise(float len, float freq, float R)
+        public static SingleChannelSignal Noise(float len, float freq, float R)
         {
             Random random = new Random();
             int count = (int)(len * freq + 0.5);
@@ -39,10 +39,10 @@ namespace SignalProcessing.Core
             {
                 y[i] = (float)(random.NextDouble() * 2 * R - R);
             }
-            return new SignalProcessingCore(freq, y);
+            return new SingleChannelSignal(freq, y);
         }
 
-        public static SignalProcessingCore Summ(List<SignalProcessingCore> signals)
+        public static SingleChannelSignal Summ(List<SingleChannelSignal> signals)
         {
             float freq = signals[0].Freq;
             int minLen = signals[0].Value.Length;
@@ -58,10 +58,10 @@ namespace SignalProcessing.Core
                     sum += signals[j].Value[i];
                 result[i] = sum;
             }
-            return new SignalProcessingCore(freq, result);
+            return new SingleChannelSignal(freq, result);
         }
 
-        public static SignalProcessingCore Skley(List<SignalProcessingCore> signals)
+        public static SingleChannelSignal Skley(List<SingleChannelSignal> signals)
         {
             float freq = signals[0].Freq;
             int totalLen = 0;
@@ -75,7 +75,7 @@ namespace SignalProcessing.Core
                 Array.Copy(signals[i].Value, 0, result, pos, signals[i].Value.Length);
                 pos += signals[i].Value.Length;
             }
-            return new SignalProcessingCore(freq, result);
+            return new SingleChannelSignal(freq, result);
         }
     }
 }

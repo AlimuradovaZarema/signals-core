@@ -3,9 +3,9 @@ using System.IO;
 
 namespace SignalProcessing.Core
 {
-    internal class SingleChannelSignalReader
+    public class SingleChannelSignalReader
     {
-        static public SignalProcessingCore SignalReader(string filePath)
+        static public SingleChannelSignal SignalReader(string filePath)
         {
             using (StreamReader reader = new StreamReader(filePath))
             {
@@ -19,7 +19,7 @@ namespace SignalProcessing.Core
                     Signal.Add(float.Parse(line));
                 }
                 float[] arrSignal = Signal.ToArray();
-                SignalProcessingCore data = new SignalProcessingCore(freq, arrSignal);
+                SingleChannelSignal data = new SingleChannelSignal(freq, arrSignal);
                 return data;
             }
         }

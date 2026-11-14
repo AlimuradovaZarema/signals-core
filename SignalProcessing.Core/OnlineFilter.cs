@@ -2,7 +2,7 @@
 
 namespace SignalProcessing.Core
 {
-    internal class OnlineFilter
+    public class OnlineFilter
     {
         private int windowSize;
         private Queue<float> buffer;

@@ -2,9 +2,9 @@
 
 namespace SignalProcessing.Core
 {
-    internal class SignalProcessingCoreWriter
+    public class SingleChannelSignalWriter
     {
-        static public void SignalWriter(SignalProcessingCore obj, string filepath)
+        static public void SignalWriter(SingleChannelSignal obj, string filepath)
         {
             using (StreamWriter writer = new StreamWriter(filepath))
             {
